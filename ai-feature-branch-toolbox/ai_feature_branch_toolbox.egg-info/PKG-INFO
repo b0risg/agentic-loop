@@ -1,0 +1,129 @@
+Metadata-Version: 2.1
+Name: ai_feature_branch_toolbox
+Version: 0.1.0
+Summary: A library for AI agents to interact with Git repositories and apply feature branch based development
+Home-page: https://github.com/b0risg/workspace
+Author: BORiS
+Author-email: borisjg@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: GitPython
+Requires-Dist: PyYAML
+
+# AI Feature Branch Toolbox
+
+AI Feature Branch Toolbox is a Python library designed for AI agents to interact with Git repositories and apply feature branch-based development. It provides functionalities to initialize repositories, manage branches, commit changes, and merge feature branches, all configured through a YAML file.
+
+## Overview
+
+This project uses the following technologies:
+- **Python**: The primary programming language for the library.
+- **PyYAML**: A library to parse YAML configuration files.
+- **GitPython**: A library to interact with Git repositories.
+
+### Project Structure
+- `ai_feature_branch_toolbox/`: Contains the main library code.
+  - `__init__.py`: Initializes the library and imports necessary components.
+  - `git_operations.py`: Implements the core Git operations.
+- `tests/`: Contains test scripts for the library.
+  - `test_hello_world.py`: Tests the hello_world function.
+  - `test_git_operations.py`: Tests the Git operations.
+  - `test_switch_branch.py`: Tests the branch switching functionality.
+  - `test_commit_changes.py`: Tests the commit functionality.
+  - `test_merge_feature_branch.py`: Tests the merge functionality.
+- `README.md`: Documentation file.
+- `setup.py`: Script for setting up the library as a Python package.
+- `requirements.txt`: Lists the dependencies required for the project.
+
+## Features
+
+- **Initialize and connect to Git repositories**: Easily set up and connect to existing Git repositories.
+- **Branch management**: List, create, and switch between branches effortlessly.
+- **Commit changes**: Stage and commit changes to the repository.
+- **Merge branches**: Merge feature branches into the main branch.
+- **YAML-based configuration**: Configure the library using a simple YAML file.
+
+## Getting started
+
+### Requirements
+
+Ensure you have the following installed:
+- Python 3.6 or higher
+- pip (Python package installer)
+
+### Quickstart
+
+1. **Installation**: Install the AI Feature Branch Toolbox using pip.
+   ```sh
+   pip install ai_feature_branch_toolbox
+   ```
+
+2. **Usage for AI Agents**:
+   - **Import the library**:
+     ```python
+     from ai_feature_branch_toolbox import GitRepo
+     ```
+
+   - **Initialize and connect to a Git repository**:
+     ```python
+     repo = GitRepo.init("/path/to/repository")
+     ```
+
+   - **List all branches**:
+     ```python
+     branches = repo.list_branches()
+     ```
+
+   - **Create a new feature branch**:
+     ```python
+     repo.create_branch("new-feature")
+     ```
+
+   - **Switch to a branch**:
+     ```python
+     repo.switch_branch("new-feature")
+     ```
+
+   - **Commit changes**:
+     ```python
+     repo.commit("Commit message")
+     ```
+
+   - **Merge a feature branch into the main branch**:
+     ```python
+     repo.merge_branch("new-feature", "main")
+     ```
+
+   - **Load configuration from YAML file**:
+     ```python
+     config = repo.load_config("config.yaml")
+     ```
+
+   - **Access configuration values**:
+     ```python
+     value = config.get("key")
+     ```
+
+For more detailed information on each function and its parameters, refer to the library's documentation.
+
+## Command-Line Interface (CLI)
+
+The AI Feature Branch Toolbox now includes a command-line interface for easy interaction. Here's how to use it:
+
+### Initializing a repository
+
+To initialize the toolbox with a Git repository, use the following command:
+
+```
+ai-feature-branch-toolbox init --repo-path /path/to/your/repo --config-path /path/to/your/config.yaml
+```
+
+- `--repo-path`: The path to your Git repository (required)
+- `--config-path`: The path to your configuration file (optional, defaults to 'config.yaml' in the current directory)
+
+This command will initialize the repository and update the configuration file with the repository path.
+
+### License

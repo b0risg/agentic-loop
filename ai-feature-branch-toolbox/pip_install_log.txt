@@ -1,0 +1,98 @@
+Using pip 24.2 from C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip (python 3.12)
+Collecting GitPython==3.1.31 (from -r requirements.txt (line 1))
+  Obtaining dependency information for GitPython==3.1.31 from https://files.pythonhosted.org/packages/9e/8a/d1e02cc111d65b0346f70abb83c51f8593e7134bf694a4a56d1a470caaf7/GitPython-3.1.31-py3-none-any.whl.metadata
+  Using cached GitPython-3.1.31-py3-none-any.whl.metadata (1.3 kB)
+Collecting PyYAML==6.0 (from -r requirements.txt (line 2))
+  Using cached PyYAML-6.0.tar.gz (124 kB)
+  Installing build dependencies: started
+  Running command pip subprocess to install build dependencies
+  Using pip 24.2 from C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip (python 3.12)
+  Collecting setuptools
+    Obtaining dependency information for setuptools from https://files.pythonhosted.org/packages/ff/ae/f19306b5a221f6a436d8f2238d5b80925004093fa3edea59835b514d9057/setuptools-75.1.0-py3-none-any.whl.metadata
+    Using cached setuptools-75.1.0-py3-none-any.whl.metadata (6.9 kB)
+  Collecting wheel
+    Obtaining dependency information for wheel from https://files.pythonhosted.org/packages/1b/d1/9babe2ccaecff775992753d8686970b1e2755d21c8a63be73aba7a4e7d77/wheel-0.44.0-py3-none-any.whl.metadata
+    Using cached wheel-0.44.0-py3-none-any.whl.metadata (2.3 kB)
+  Collecting Cython
+    Obtaining dependency information for Cython from https://files.pythonhosted.org/packages/35/00/78ffea3a0ab176267a25ff049518b2582db7ac265bbf27944243d1a81ce2/Cython-3.0.11-cp312-cp312-win_amd64.whl.metadata
+    Using cached Cython-3.0.11-cp312-cp312-win_amd64.whl.metadata (3.2 kB)
+  Using cached setuptools-75.1.0-py3-none-any.whl (1.2 MB)
+  Using cached wheel-0.44.0-py3-none-any.whl (67 kB)
+  Using cached Cython-3.0.11-cp312-cp312-win_amd64.whl (2.8 MB)
+  Installing collected packages: wheel, setuptools, Cython
+    Creating C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Scripts
+  Successfully installed Cython-3.0.11 setuptools-75.1.0 wheel-0.44.0
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Running command Getting requirements to build wheel
+  running egg_info
+  writing lib\PyYAML.egg-info\PKG-INFO
+  writing dependency_links to lib\PyYAML.egg-info\dependency_links.txt
+  writing top-level names to lib\PyYAML.egg-info\top_level.txt
+  Traceback (most recent call last):
+    File "C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 353, in <module>
+      main()
+    File "C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 335, in main
+      json_out['return_val'] = hook(**hook_input['kwargs'])
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py", line 118, in get_requires_for_build_wheel
+      return hook(config_settings)
+             ^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\build_meta.py", line 332, in get_requires_for_build_wheel
+      return self._get_build_requires(config_settings, requirements=[])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\build_meta.py", line 302, in _get_build_requires
+      self.run_setup()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\build_meta.py", line 318, in run_setup
+      exec(code, locals())
+    File "<string>", line 288, in <module>
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\__init__.py", line 117, in setup
+      return distutils.core.setup(**attrs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\core.py", line 183, in setup
+      return run_commands(dist)
+             ^^^^^^^^^^^^^^^^^^
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\core.py", line 199, in run_commands
+      dist.run_commands()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 954, in run_commands
+      self.run_command(cmd)
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\dist.py", line 950, in run_command
+      super().run_command(command)
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\dist.py", line 973, in run_command
+      cmd_obj.run()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\command\egg_info.py", line 311, in run
+      self.find_sources()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\command\egg_info.py", line 319, in find_sources
+      mm.run()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\command\egg_info.py", line 540, in run
+      self.add_defaults()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\command\egg_info.py", line 578, in add_defaults
+      sdist.add_defaults(self)
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\command\sdist.py", line 108, in add_defaults
+      super().add_defaults()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\command\sdist.py", line 238, in add_defaults
+      self._add_defaults_ext()
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\command\sdist.py", line 323, in _add_defaults_ext
+      self.filelist.extend(build_ext.get_source_files())
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "<string>", line 204, in get_source_files
+    File "C:\Users\bgumho\AppData\Local\Temp\pip-build-env-fods85l0\overlay\Lib\site-packages\setuptools\_distutils\cmd.py", line 107, in __getattr__
+      raise AttributeError(attr)
+  AttributeError: cython_sources
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> See above for output.
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  full command: 'C:\Users\bgumho\AppData\Local\anaconda3\python.exe' 'C:\Users\bgumho\AppData\Local\anaconda3\Lib\site-packages\pip\_vendor\pyproject_hooks\_in_process\_in_process.py' get_requires_for_build_wheel 'C:\Users\bgumho\AppData\Local\Temp\tmpgmnmhal5'
+  cwd: C:\Users\bgumho\AppData\Local\Temp\pip-install-8tihv9ot\pyyaml_2150828dad2e499cb3fcc4b56bea3f46
+  Getting requirements to build wheel: finished with status 'error'
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.

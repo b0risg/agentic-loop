@@ -1,0 +1,20 @@
+ai_agent:
+  model: default
+  temperature: 0.7
+branches:
+  main: main
+  prefix: feature/
+commit:
+  author_email: borisjg@gmail.com
+  author_name: AI Agent
+  message_template: 'feat: {message}'
+logging:
+  file: ai_feature_branch.log
+  level: INFO
+merge:
+  squash: false
+  strategy: merge
+repository:
+  path: ./test_repo4
+  remote: origin
+  remote_url: ''

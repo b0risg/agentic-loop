@@ -1,0 +1,2 @@
+[console_scripts]
+ai-feature-branch-toolbox = ai_feature_branch_toolbox.cli:main
