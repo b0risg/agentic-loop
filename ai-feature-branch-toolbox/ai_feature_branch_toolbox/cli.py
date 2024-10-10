@@ -49,7 +49,8 @@ def commit_command(args, git_ops):
         print("Failed to commit changes")
         sys.exit(1)
 
-def push_command(args, git_ops, config_manager):
+def push_command(args, git_ops):
+    config_manager = ConfigManager('config.yaml')
     remote_url = config_manager.get_value('repository.remote_url')
     if not remote_url:
         print("Remote URL not set. Please provide a remote URL:")
@@ -177,7 +178,7 @@ def main():
                 elif args.command == 'commit':
                     commit_command(args, git_ops)
                 elif args.command == 'push':
-                    push_command(args, git_ops, config_manager)
+                    push_command(args, git_ops)  # This line is added as per instructions
                 elif args.command == 'merge':
                     merge_branch_command(args, git_ops)
                 elif args.command == 'resolve-conflicts':

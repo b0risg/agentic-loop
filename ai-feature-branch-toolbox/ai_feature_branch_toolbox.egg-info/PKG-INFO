@@ -15,115 +15,155 @@ Requires-Dist: PyYAML
 
 # AI Feature Branch Toolbox
 
-AI Feature Branch Toolbox is a Python library designed for AI agents to interact with Git repositories and apply feature branch-based development. It provides functionalities to initialize repositories, manage branches, commit changes, and merge feature branches, all configured through a YAML file.
+The AI Feature Branch Toolbox is a Python library designed to facilitate feature branch-based development for AI agents interacting with Git repositories. The toolbox provides functionalities such as initializing repositories, managing branches, committing changes, and merging feature branches, all while adhering to specified branch naming conventions and maintaining persistent configuration states.
 
 ## Overview
 
-This project uses the following technologies:
-- **Python**: The primary programming language for the library.
-- **PyYAML**: A library to parse YAML configuration files.
-- **GitPython**: A library to interact with Git repositories.
-
-### Project Structure
-- `ai_feature_branch_toolbox/`: Contains the main library code.
-  - `__init__.py`: Initializes the library and imports necessary components.
-  - `git_operations.py`: Implements the core Git operations.
-- `tests/`: Contains test scripts for the library.
-  - `test_hello_world.py`: Tests the hello_world function.
-  - `test_git_operations.py`: Tests the Git operations.
-  - `test_switch_branch.py`: Tests the branch switching functionality.
-  - `test_commit_changes.py`: Tests the commit functionality.
-  - `test_merge_feature_branch.py`: Tests the merge functionality.
-- `README.md`: Documentation file.
-- `setup.py`: Script for setting up the library as a Python package.
-- `requirements.txt`: Lists the dependencies required for the project.
+The AI Feature Branch Toolbox is written in Python and deployed as a Python installation package. The configuration is managed through a `config.yaml` file, with mechanisms to generate a template `config.yaml` and maintain a persistent configuration state across branch operations. The toolbox enforces branch naming conventions and provides comprehensive usage instructions.
 
 ## Features
 
-- **Initialize and connect to Git repositories**: Easily set up and connect to existing Git repositories.
-- **Branch management**: List, create, and switch between branches effortlessly.
-- **Commit changes**: Stage and commit changes to the repository.
-- **Merge branches**: Merge feature branches into the main branch.
-- **YAML-based configuration**: Configure the library using a simple YAML file.
+- **Initialization**: Initialize Git repositories and create a default configuration file.
+- **Branch Management**: Create and switch branches while enforcing naming conventions.
+- **Committing**: Commit changes to the repository with specified commit messages.
+- **Merging**: Merge feature branches into the main branch, with conflict detection and resolution support.
+- **Configuration Management**: Generate and manage configuration settings using `config.yaml` and persistent storage.
+- **CLI Interface**: Comprehensive command-line interface for interacting with the toolbox.
 
-## Getting started
+## Installation
 
-### Requirements
-
-Ensure you have the following installed:
-- Python 3.6 or higher
-- pip (Python package installer)
-
-### Quickstart
-
-1. **Installation**: Install the AI Feature Branch Toolbox using pip.
-   ```sh
-   pip install ai_feature_branch_toolbox
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/ai-feature-branch-toolbox.git
+   cd ai-feature-branch-toolbox
    ```
 
-2. **Usage for AI Agents**:
-   - **Import the library**:
-     ```python
-     from ai_feature_branch_toolbox import GitRepo
-     ```
+2. Install the package:
+   ```
+   pip install -e .
+   ```
 
-   - **Initialize and connect to a Git repository**:
-     ```python
-     repo = GitRepo.init("/path/to/repository")
-     ```
+## Usage
 
-   - **List all branches**:
-     ```python
-     branches = repo.list_branches()
-     ```
+### Initializing a Repository
 
-   - **Create a new feature branch**:
-     ```python
-     repo.create_branch("new-feature")
-     ```
-
-   - **Switch to a branch**:
-     ```python
-     repo.switch_branch("new-feature")
-     ```
-
-   - **Commit changes**:
-     ```python
-     repo.commit("Commit message")
-     ```
-
-   - **Merge a feature branch into the main branch**:
-     ```python
-     repo.merge_branch("new-feature", "main")
-     ```
-
-   - **Load configuration from YAML file**:
-     ```python
-     config = repo.load_config("config.yaml")
-     ```
-
-   - **Access configuration values**:
-     ```python
-     value = config.get("key")
-     ```
-
-For more detailed information on each function and its parameters, refer to the library's documentation.
-
-## Command-Line Interface (CLI)
-
-The AI Feature Branch Toolbox now includes a command-line interface for easy interaction. Here's how to use it:
-
-### Initializing a repository
-
-To initialize the toolbox with a Git repository, use the following command:
+To initialize a repository and create a default configuration file:
 
 ```
-ai-feature-branch-toolbox init --repo-path /path/to/your/repo --config-path /path/to/your/config.yaml
+ai-feature-branch-toolbox init --repo-path /path/to/your/repo --config-path config.yaml --remote-url https://github.com/yourusername/yourrepo.git
 ```
 
-- `--repo-path`: The path to your Git repository (required)
-- `--config-path`: The path to your configuration file (optional, defaults to 'config.yaml' in the current directory)
+- `--repo-path`: Path to the Git repository (required)
+- `--config-path`: Path to the configuration file (default: config.yaml)
+- `--remote-url`: URL of the remote repository (optional)
 
-This command will initialize the repository and update the configuration file with the repository path.
+### Creating a Feature Branch
 
-### License
+To create a new feature branch:
+
+```
+ai-feature-branch-toolbox create-branch feature/new-feature-name
+```
+
+- The branch name should follow the prefix specified in your `config.yaml` file.
+
+### Switching Branches
+
+To switch to an existing branch:
+
+```
+ai-feature-branch-toolbox switch-branch branch-name
+```
+
+### Committing Changes
+
+To commit changes to the current branch:
+
+```
+ai-feature-branch-toolbox commit "Your commit message here"
+```
+
+### Pushing Changes
+
+To push changes to the remote repository:
+
+```
+ai-feature-branch-toolbox push --remote origin --branch feature/your-branch-name
+```
+
+- `--remote`: Name of the remote repository (default: origin)
+- `--branch`: Name of the branch to push
+
+### Merging Branches
+
+To merge a feature branch into the main branch:
+
+```
+ai-feature-branch-toolbox merge feature/your-feature-branch --main-branch main
+```
+
+- `--main-branch`: Name of the main branch (default: main)
+
+### Resolving Conflicts
+
+If conflicts occur during a merge, you can use the following command to check and resolve them:
+
+```
+ai-feature-branch-toolbox resolve-conflicts
+```
+
+This command will guide you through the process of resolving conflicts manually.
+
+### Getting Help
+
+To see the list of available commands and their descriptions:
+
+```
+ai-feature-branch-toolbox help
+```
+
+For more information on a specific command:
+
+```
+ai-feature-branch-toolbox <command> --help
+```
+
+## Configuration
+
+The `config.yaml` file is used to store settings for the AI Feature Branch Toolbox. Here's an example of what it might contain:
+
+```yaml
+repository:
+  path: /path/to/your/repo
+  remote_url: https://github.com/yourusername/yourrepo.git
+branch:
+  prefix: feature/
+  main: main
+commit:
+  author_name: AI Agent
+  author_email: ai@example.com
+merge:
+  strategy: recursive
+logging:
+  level: INFO
+  file: ai_feature_branch.log
+```
+
+You can modify this file to customize the behavior of the toolbox according to your needs.
+
+## Troubleshooting
+
+If you encounter any issues while using the AI Feature Branch Toolbox, please check the following:
+
+1. Ensure that Git is installed and properly configured on your system.
+2. Verify that you have the necessary permissions to access and modify the repository.
+3. Check the `config.yaml` file for any misconfiguration.
+4. Review the log file (specified in `config.yaml`) for any error messages or warnings.
+
+If problems persist, please open an issue on the GitHub repository with a detailed description of the problem and steps to reproduce it.
+
+## License
+
+This project is proprietary. All rights reserved.
+
+Â© 2024. All rights reserved.

@@ -2,13 +2,22 @@ import yaml
 import logging
 import os
 from .config_validator import ConfigValidator
+from .config_template import DEFAULT_CONFIG
+from .persistent_config import PersistentConfig
 
 class ConfigManager:
     def __init__(self, config_path='config.yaml'):
         self.config_path = config_path
         logging.info(f"Initializing ConfigManager with config path: {self.config_path}")
         logging.info(f"Current working directory: {os.getcwd()}")
-        self.config = self._load_config()
+        self.persistent_config = PersistentConfig()
+        self.config = self._load_or_create_config()
+
+    def _load_or_create_config(self):
+        try:
+            return self._load_config()
+        except FileNotFoundError:
+            return self._create_default_config()
 
     def _load_config(self):
         try:
@@ -16,6 +25,10 @@ class ConfigManager:
             with open(self.config_path, 'r') as config_file:
                 config = yaml.safe_load(config_file)
             logging.info(f"Successfully loaded config: {config}")
+
+            # Merge with persistent config
+            persistent_config = self.persistent_config.load()
+            config.update(persistent_config)
 
             # Validate the loaded configuration
             logging.info("Validating configuration")
@@ -33,6 +46,26 @@ class ConfigManager:
             logging.error(f"Invalid configuration: {e}")
             raise
 
+    def _create_default_config(self):
+        logging.info(f"Creating default configuration at {self.config_path}")
+        config = DEFAULT_CONFIG.copy()
+        self._save_config(config)
+        return config
+
+    def _save_config(self, config=None):
+        if config is None:
+            config = self.config
+        try:
+            with open(self.config_path, 'w') as config_file:
+                yaml.dump(config, config_file, default_flow_style=False)
+            logging.info(f"Configuration saved successfully to {self.config_path}")
+
+            # Save to persistent config
+            self.persistent_config.save(config)
+        except Exception as e:
+            logging.error(f"Error saving configuration: {e}")
+            raise
+
     def get_config(self):
         return self.config
 
@@ -47,20 +80,6 @@ class ConfigManager:
         return value
 
     def set_value(self, key, value):
-        keys = key.split('.')
-        config = self.config
-        for k in keys[:-1]:
-            if k not in config:
-                config[k] = {}
-            config = config[k]
-        config[keys[-1]] = value
+        self.config[key] = value
+        self.persistent_config.update(key, value)
         self._save_config()
-
-    def _save_config(self):
-        try:
-            with open(self.config_path, 'w') as config_file:
-                yaml.dump(self.config, config_file, default_flow_style=False)
-            logging.info(f"Configuration saved successfully to {self.config_path}")
-        except Exception as e:
-            logging.error(f"Error saving configuration: {e}")
-            raise

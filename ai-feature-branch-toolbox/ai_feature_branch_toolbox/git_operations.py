@@ -1,6 +1,7 @@
 import os
 import logging
 from git import Repo, InvalidGitRepositoryError, GitCommandError
+from .config_manager import ConfigManager
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -9,6 +10,7 @@ logger = logging.getLogger(__name__)
 class GitOperations:
     def __init__(self):
         self.repo = None
+        self.config_manager = ConfigManager()
 
     def initialize_repo(self, path):
         """
@@ -34,6 +36,8 @@ class GitOperations:
                 logger.error(f"Path {path} does not exist. Failing initialization.")
                 return False
 
+            # Update persistent config with repo path
+            self.config_manager.set_value('repository.path', path)
             return True
         except Exception as e:
             logger.exception(f"An error occurred while initializing the repository: {str(e)}")
@@ -84,7 +88,7 @@ class GitOperations:
 
     def create_feature_branch(self, branch_name):
         """
-        Create a new feature branch.
+        Create a new feature branch with enforced naming convention.
 
         Args:
             branch_name (str): The name of the new feature branch.
@@ -97,6 +101,14 @@ class GitOperations:
             return False
 
         try:
+            # Get branch prefix from config
+            branch_prefix = self.config_manager.get_value('branches.prefix', '')
+            print("dbg:", branch_prefix)
+            # Check if the branch name starts with the required prefix
+            if not branch_name.startswith(branch_prefix):
+                logger.error(f"Branch name must start with '{branch_prefix}'")
+                return False
+
             new_branch = self.repo.create_head(branch_name)
             new_branch.checkout()
             logger.info(f"Created and switched to new branch: {branch_name}")
@@ -126,6 +138,9 @@ class GitOperations:
 
             self.repo.git.checkout(branch_name)
             logger.info(f"Switched to branch: {branch_name}")
+
+            # Update persistent config with current branch
+            self.config_manager.set_value('current_branch', branch_name)
             return True
         except Exception as e:
             logger.exception(f"An error occurred while switching branches: {str(e)}")

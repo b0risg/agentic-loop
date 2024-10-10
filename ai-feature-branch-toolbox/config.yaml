@@ -15,6 +15,7 @@ merge:
   squash: false
   strategy: merge
 repository:
-  path: ./test_repo4
+  path: ./
   remote: origin
-  remote_url: ''
+  remote_url: https://github.com/b0risg/workspace.git
+repository.path: ./ttt
